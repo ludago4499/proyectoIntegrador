@@ -28,7 +28,7 @@ def cono():
 
 
 def pastel():
-    print ("Qué tipo de pastel?")
+    print ("Qué tipo de pastel")
     print( "Pastel Oreo (1)")
     print ("Pastel Choco Xtreme (2)")
     print( "Pastel de Fresa (3)")
