@@ -14,7 +14,7 @@ def recibir_archivo(filename) -> list:
                 data_list.append(stripped_row) # Agrega la lista a la lista
     return data_list
 
-def actualizar_archivo(filename, archivo)-> None:
+def actualizar_archivo(filename, archivo)-> None: # el arhcivo es una lista de listas
     # Se recibe el nombre de la ubicación del archivo junto con el arreglo 
     # y se actualiza el archivo
     return
@@ -33,4 +33,6 @@ def checar_salir(message):
 
 costos_filename = "costos_y_precios.csv"
 x = recibir_archivo(costos_filename)
-print(x)
+print(x[1][1])
+print(x[1][0])
+print(x[1][3])
