@@ -1,4 +1,5 @@
 import time
+import config
 
 def desplegar_menu_principal() -> None:
 # Luis González
@@ -10,11 +11,16 @@ def desplegar_menu_principal() -> None:
     print("[3] Consultar datos del inventario")
     print ("[4] Consultar datos de las ventas")
     print("[5] Mostrar reportes de ventas por vendedor o por artículo")
-    print ( "[6] Salir")
+    print ("[6] Salir")
 
 def registrar_una_venta () -> None:
     # follow up
     print("Ingrese 'salir' si quiere regresar al menú principal. ")
+   
+
+
+    print("(2) Ingrese la cantidad vendida")
+
 
     seleccion = input("")
 
@@ -44,15 +50,15 @@ def seleccion_menu_principal(seleccion: int):
     # Luis González
     match seleccion:
         case 1:
-            registrar_una_venta()
+            return registrar_una_venta()
         case 2:
-            registrar_articulos()
+            return registrar_articulos()
         case 3:
-            consultar_datos_inventario()
+            return consultar_datos_inventario()
         case 4:
-            consultar_datos_ventas()
+           return consultar_datos_ventas()
         case 5:
-            mostrar_reportes()
+            return mostrar_reportes()
         case 6:
             # Se termimna el programa debido a intención del usuario
             print ("Saliendo ... ")
