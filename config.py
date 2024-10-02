@@ -17,7 +17,16 @@ def recibir_archivo(filename) -> list:
 def actualizar_archivo(filename, archivo)-> None: # el arhcivo es una lista de listas
     # Se recibe el nombre de la ubicación del archivo junto con el arreglo 
     # y se actualiza el archivo
-    return
+    
+    with open(filename,mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(archivo)
+
+    return archivo
+
+def add_row(archivo, fila):
+    archivo.append(fila)
+    return archivo
 
 # checar is el usuario quiere salir, regresar un -1 si sí
 def checar_salir(message):
@@ -33,6 +42,7 @@ def checar_salir(message):
 
 costos_filename = "costos_y_precios.csv"
 x = recibir_archivo(costos_filename)
-print(x[1][1])
-print(x[1][0])
-print(x[1][3])
+test_lista = ["test","1", "2"]
+x = add_row(x,test_lista)
+
+actualizar_archivo(costos_filename,x)
