@@ -1,10 +1,10 @@
 Producto,id,Costo,Precio,IVA
-Blizzard C,1,30,60,
-Blizzard M,2,35,70,
-Blizzard G,3,40,80,
-Cono C,4,25,45,
-Cono M,5,28,55,
-Cono G,6,30,60,
-Pastel Oreo,7,180,300,
-Banana Split,8,40,85,
-Ingrediente Extra,9,5,10,
+Blizzard C,1,30,60,8.28
+Blizzard M,2,35,70,9.66
+Blizzard G,3,40,80,11.03
+Cono C,4,25,45,6.21
+Cono M,5,28,55,7.59
+Cono G,6,30,60,8.28
+Pastel Oreo,7,180,300,41.38
+Banana Split,8,40,85,11.72
+Ingrediente Extra,9,5,10,1.38

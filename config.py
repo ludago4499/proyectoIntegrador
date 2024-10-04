@@ -35,14 +35,16 @@ def checar_salir(message):
     else:
         return # empty return
 
+def actualizar_iva():
+    filename = "costos_y_precios.csv"
+    lista =  recibir_archivo(filename) # recibe el archivo
+    for i in range(1,len(lista)):
+        lista[i][4] = round(float(lista[i][3]) * (0.16) / 1.16 ,2)
+    # actualiza el archivo nuevamente
+    actualizar_archivo(filename,lista)
+
 
 # testing below
 
 
-
-costos_filename = "costos_y_precios.csv"
-x = recibir_archivo(costos_filename)
-test_lista = ["test","1", "2"]
-x = add_row(x,test_lista)
-
-actualizar_archivo(costos_filename,x)
+actualizar_iva()
