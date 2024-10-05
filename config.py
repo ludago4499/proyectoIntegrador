@@ -2,10 +2,10 @@ import csv # utilizado para trabajar con archivos csv
 
 # Archivo para actualizar, modificar y cambiar archivos
 
-def recibir_archivo(filename) -> list:
+def recibir_archivo(filename: str) -> list:
     # recibe el nombre de la ubicación del archivo y 
     # retorna un arreglo con los datos del archivo
-    with open(filename, 'r') as file: # read only
+    with open(filename, 'r', errors='replace') as file: # read only, encodificador latin-1 para incluir acentos
         data_list = []
         reader = csv.reader(file)
         for row in reader: # Cada fila del archivo
@@ -14,7 +14,7 @@ def recibir_archivo(filename) -> list:
                 data_list.append(stripped_row) # Agrega la lista a la lista
     return data_list
 
-def actualizar_archivo(filename, archivo)-> None: # el arhcivo es una lista de listas
+def actualizar_archivo(filename: str, archivo: list)-> None: # el arhcivo es una lista de listas
     # Se recibe el nombre de la ubicación del archivo junto con el arreglo 
     # y se actualiza el archivo
     
@@ -22,7 +22,6 @@ def actualizar_archivo(filename, archivo)-> None: # el arhcivo es una lista de l
         writer = csv.writer(file)
         writer.writerows(archivo)
 
-    return archivo
 
 def add_row(archivo, fila):
     archivo.append(fila)
@@ -42,9 +41,3 @@ def actualizar_iva():
         lista[i][4] = round(float(lista[i][3]) * (0.16) / 1.16 ,2)
     # actualiza el archivo nuevamente
     actualizar_archivo(filename,lista)
-
-
-# testing below
-
-
-actualizar_iva()
