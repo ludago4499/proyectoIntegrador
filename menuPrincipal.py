@@ -1,5 +1,6 @@
 import time
 import config
+import manejar_inventario
 
 def desplegar_menu_principal() -> None:
 # Luis González
@@ -16,18 +17,15 @@ def desplegar_menu_principal() -> None:
 def registrar_una_venta () -> None:
     # follow up
     print("Ingrese 'salir' si quiere regresar al menú principal. ")
-   
-
-
     print("(2) Ingrese la cantidad vendida")
-
-
     seleccion = input("")
 
 def registrar_articulos() -> None:
     # follow up
-    print("Ingrese 'salir' si quiere regresar al menú principal. ")
-    seleccion = input("")
+    valor = manejar_inventario.llegada_articulos()
+    if (valor ==-1):
+        return -1
+    
 
 def consultar_datos_inventario() -> None:
     # follow up
