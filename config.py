@@ -1,4 +1,5 @@
 import csv # utilizado para trabajar con archivos csv
+import time
 
 # Archivo para actualizar, modificar y cambiar archivos
 
@@ -41,3 +42,30 @@ def actualizar_iva():
         lista[i][4] = round(float(lista[i][3]) * (0.16) / 1.16 ,2)
     # actualiza el archivo nuevamente
     actualizar_archivo(filename,lista)
+# imprime guiones para hacer más claro hacia el usuario
+def guiones()-> None:
+    print("-----------------")
+
+# automatiza el check de si quiere salir el usuario
+
+def desea_salir(texto) -> bool:
+    if texto ==  'salir':
+        return True
+    else:
+        return False
+    
+def checar_seleccion (seleccion) -> int:
+    # regresa -1 si contiene algún error
+    # regresa -2 si el usuario desea salir
+    try:
+        seleccion = int(seleccion)
+        return seleccion
+    except ValueError:
+        if (desea_salir(seleccion)):
+            print("Saliendo ...")
+            return -2
+        print("Hubo un error en su selección. Verifique nuevamente.")
+        time.sleep(1)
+        return -1
+
+

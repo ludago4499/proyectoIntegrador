@@ -1,23 +1,17 @@
 import menuPrincipal
-import time
-
+import config
 # Código Principal
 def main():
-    flag = True # condicion while
 
-    # While para la primera selección
-    while (flag):
-
-        menuPrincipal.desplegar_menu_principal()
-        seleccion = input("Seleccion: ")
-        try:
-            seleccion = int(seleccion)  
-            flag = False  # se sale del while
-        except ValueError:
-            print("Hubo un error en su selección. Verifique nuevamente.")  # mensaje de error
-        time.sleep(1) # Se espera un segundo y se vuelve a repetir el while  
-    valor = menuPrincipal.seleccion_menu_principal(seleccion) # checa si hay un error (-1)
-    if (valor == - 1):
+    menuPrincipal.desplegar_menu_principal()
+    seleccion = input("Seleccion: ")
+    seleccion = config.checar_seleccion(seleccion)
+    if (seleccion == -2):
+        return
+    if (not seleccion == -1):
+        seleccion = menuPrincipal.seleccion_menu_principal(seleccion) # checa si hay un error (-1)
+        
+    if (seleccion == -1):
         main()
 
 main()
