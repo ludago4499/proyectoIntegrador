@@ -6,6 +6,7 @@ import time
 def recibir_archivo(filename: str) -> list:
     # recibe el nombre de la ubicación del archivo y 
     # retorna un arreglo con los datos del archivo
+    # Luis González
     with open(filename, 'r', errors='replace') as file: # read only, encodificador latin-1 para incluir acentos
         data_list = []
         reader = csv.reader(file)
@@ -18,6 +19,7 @@ def recibir_archivo(filename: str) -> list:
 def actualizar_archivo(filename: str, archivo: list)-> None: # el arhcivo es una lista de listas
     # Se recibe el nombre de la ubicación del archivo junto con el arreglo 
     # y se actualiza el archivo
+    # Luis González
     
     with open(filename,mode='w', newline='') as file:
         writer = csv.writer(file)
@@ -25,17 +27,20 @@ def actualizar_archivo(filename: str, archivo: list)-> None: # el arhcivo es una
 
 
 def add_row(archivo, fila):
+    # Luis González
     archivo.append(fila)
     return archivo
 
 # checar is el usuario quiere salir, regresar un -1 si sí
 def checar_salir(message):
+    # Luis González
     if message.lower() == 'salir':
         return -1 # return -1 case
     else:
         return # empty return
 
 def actualizar_iva():
+    # Luis González
     filename = "costos_y_precios.csv"
     lista =  recibir_archivo(filename) # recibe el archivo
     for i in range(1,len(lista)):
@@ -44,11 +49,13 @@ def actualizar_iva():
     actualizar_archivo(filename,lista)
 # imprime guiones para hacer más claro hacia el usuario
 def guiones()-> None:
+    # Luis González
     print("-----------------")
 
 # automatiza el check de si quiere salir el usuario
 
 def desea_salir(texto) -> bool:
+    # Luis González
     if texto ==  'salir':
         return True
     else:
@@ -57,6 +64,7 @@ def desea_salir(texto) -> bool:
 def checar_seleccion (seleccion) -> int:
     # regresa -1 si contiene algún error
     # regresa -2 si el usuario desea salir
+    # Luis González
     try:
         seleccion = int(seleccion)
         return seleccion
