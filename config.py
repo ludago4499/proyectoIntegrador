@@ -31,13 +31,7 @@ def add_row(archivo, fila):
     archivo.append(fila)
     return archivo
 
-# checar is el usuario quiere salir, regresar un -1 si sí
-def checar_salir(message):
-    # Luis González
-    if message.lower() == 'salir':
-        return -1 # return -1 case
-    else:
-        return # empty return
+
 
 def actualizar_iva():
     # Luis González
@@ -56,7 +50,7 @@ def guiones()-> None:
 
 def desea_salir(texto) -> bool:
     # Luis González
-    if texto ==  'salir':
+    if texto ==  'salir' or texto == 'cancelar':
         return True
     else:
         return False
