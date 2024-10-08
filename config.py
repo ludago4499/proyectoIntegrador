@@ -7,7 +7,7 @@ def recibir_archivo(filename: str) -> list:
     # recibe el nombre de la ubicación del archivo y 
     # retorna un arreglo con los datos del archivo
     # Luis González
-    with open(filename, 'r', errors='replace') as file: # read only, encodificador latin-1 para incluir acentos
+    with open(filename, 'r', encoding='utf-8-sig') as file: # read only, encodificador latin-1 para incluir acentos
         data_list = []
         reader = csv.reader(file)
         for row in reader: # Cada fila del archivo
