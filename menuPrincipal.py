@@ -2,6 +2,7 @@ import time
 import config
 import manejar_inventario
 import manejar_vendedores
+import datos_de_ventas
 
 def desplegar_menu_principal() -> None:
 # Luis González
@@ -39,8 +40,18 @@ def consultar_datos_inventario() -> None:
 
 def consultar_datos_ventas() -> None:
     # follow up
-    print("Ingrese 'salir' si quiere regresar al menú principal. ")
-    seleccion = input("")
+    config.guiones()
+    datos_de_ventas.menu_datos_ventas()
+    seleccion = input("Selección: ")
+    seleccion = config.checar_seleccion(seleccion)
+    if (seleccion == -2): # opción salir
+        return -1
+    if (seleccion == -1): # error
+        return consultar_datos_ventas
+    valor = datos_de_ventas.seleccion_datos_ventas(seleccion)
+
+    if (valor == -1):
+        return consultar_datos_ventas()
 
 def mostrar_reportes() -> None:
     # follow up
