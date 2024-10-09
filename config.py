@@ -53,7 +53,8 @@ def guiones()-> None:
 
 def desea_salir(texto) -> bool:
     # Luis González
-    if texto ==  'salir' or texto == 'cancelar':
+    texto = texto.lower()
+    if texto ==  'salir' or texto == 'cancelar' or texto == 'exit':
         return True
     else:
         return False
