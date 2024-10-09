@@ -33,7 +33,10 @@ def add_row(archivo, fila):
 
 
 
-def actualizar_iva():
+def actualizar_iva() -> None:
+    '''
+    Se actualiza le IVA automáticamente para el archivo de costos_y_precios.csv
+    '''
     # Luis González
     filename = "costos_y_precios.csv"
     lista =  recibir_archivo(filename) # recibe el archivo
@@ -55,12 +58,15 @@ def desea_salir(texto) -> bool:
     else:
         return False
     
-def checar_seleccion (seleccion) -> int:
+def checar_seleccion (seleccion, es_int = True) -> int:
     # regresa -1 si contiene algún error
     # regresa -2 si el usuario desea salir
     # Luis González
     try:
-        seleccion = int(seleccion)
+        if (es_int):
+            seleccion = int(seleccion)
+        else:
+            seleccion = float(seleccion)
         return seleccion
     except ValueError:
         if (desea_salir(seleccion)):
