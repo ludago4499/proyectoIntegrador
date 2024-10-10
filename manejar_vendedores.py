@@ -1,7 +1,7 @@
 import config
 import time
 
-archivo_vendedores = "listaVendedores.csv"
+ARCHIVO_VENDEDORES = "listaVendedores.csv"
 
 def menu_vendedor ():
     config.guiones()
@@ -46,7 +46,7 @@ def agregar_vendedor():
         descripcion_vendedor = checar_descripcion(descripcion_vendedor)
         if (descripcion_vendedor == -1):
             flag = True
-    lista = config.recibir_archivo(archivo_vendedores)
+    lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
     id_vendedor = generar_id(lista)
     fila = [nombre_vendedor, id_vendedor, telefono_vendedor, descripcion_vendedor]
 
@@ -71,18 +71,18 @@ def agregar_vendedor():
 
 
     config.add_row(lista,fila)
-    config.actualizar_archivo(archivo_vendedores,lista)
+    config.actualizar_archivo(ARCHIVO_VENDEDORES,lista)
     print ("Se ha actualizado con éxito")
     return -1 # se regresa para que se repita el menú nuevamente
 
 def cambiar_datos():
     # Luis González
     config.guiones()
-    lista = config.recibir_archivo(archivo_vendedores)
+    lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
     print("De qué vendedor se desea cambiar datos? ")
-    print("o escriba 'salir' para salir.")
+    print("O escriba 'salir' para salir.")
     config.guiones()
-    print_nombre_vendedor(lista)
+    print_nombre_vendedor()
     config.guiones()
     seleccion = input("Selección: ")
     [id,row] = obtener_id_y_fila(lista,seleccion)
@@ -131,7 +131,7 @@ def cambiar_datos():
                 flag = False
 
     lista[row][col] =nuevo_valor
-    config.actualizar_archivo(archivo_vendedores,lista)
+    config.actualizar_archivo(ARCHIVO_VENDEDORES,lista)
     print ("Cambiado con éxito. Regresando al menú principal")
     time.sleep(1)
     return -1
@@ -146,8 +146,8 @@ def eliminar_vendedor():
         time.sleep(1)
         return -1
     config.guiones()
-    lista = config.recibir_archivo(archivo_vendedores)
-    print_nombre_vendedor(lista)
+    lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
+    print_nombre_vendedor()
     flag = True
     while flag:
         config.guiones()
@@ -164,7 +164,7 @@ def eliminar_vendedor():
     print( "Vendedor eliminado con éxito")
     print("Regresando al menú principal")
     lista[row][0] = "ELIMINADO " + lista[row][0] # se agrega el tag de eliminado'
-    config.actualizar_archivo(archivo_vendedores, lista)
+    config.actualizar_archivo(ARCHIVO_VENDEDORES, lista)
     time.sleep(1)
     return -1
 
@@ -185,7 +185,8 @@ def seleccion_menu_vendedores(seleccion: int):
             time.sleep(1) # Se espera un segundo
             return -1
             
-def print_nombre_vendedor(lista: list) -> None:
+def print_nombre_vendedor() -> None:
+    lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
     # imprime todos los nombres de los vendedores
     # excepto si estan eliminados
     for i in range(1,len(lista)):

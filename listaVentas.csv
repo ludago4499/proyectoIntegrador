@@ -1,2 +1,18 @@
-﻿Objeto,Cantidad,Costo ,Precio,Contribucion,Fecha,IVA,id vendedor
+Objeto,Cantidad,Costo,Precio,Contribucion,Fecha,IVA,id vendedor
 Cono C,3,75,135,60,10/08/2024,18.6,2
+Blizzard C,1,30,60,30.0,08/12/2024,8.28,1
+Blizzard C,1,30,60,30.0,08/12/2024,8.28,1
+Blizzard C,1,30,60,30.0,08/12/2024,8.28,1
+Blizzard M,1,35,70,35.0,12/12/2004,9.66,6
+Blizzard M,1,35,70,35.0,12/12/2024,9.66,6
+Blizzard G,10,40,80,40.0,12/08/2020,11.03,7
+Blizzard G,10,40,80,40.0,04/07/2023,11.03,4
+Blizzard G,4,40,80,40.0,12/12/2024,11.03,2
+Blizzard G,44,40,80,40.0,04/12/2023,11.03,4
+Cono Cubierto,2,110.0,220.0,110.0,04/04/2023,220.0,4
+Pastel Oreo,3,180,300,120.0,04/04/2023,41.38,4
+Banana Split C,2,80.0,160.0,80.0,04/05/2023,160.0,3
+Blizzard G,2,80.0,160.0,80.0,04/04/2023,22.06,3
+Banana Split G,2,100.0,190.0,90.0,04/03/2023,26.2,3
+Cafe Latte,2,40.0,90.0,50.0,04/03/2023,12.42,6
+Triple Chocolate Parfait,2,70.0,130.0,60.0,04/03/2023,17.94,4

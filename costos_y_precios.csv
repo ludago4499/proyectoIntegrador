@@ -1,35 +1,35 @@
 Producto,id,Costo,Precio,IVA,Cantidad Vendida
 Blizzard C,1,30,60,8.28,0
-Blizzard M,2,35,70,9.66,0
-Blizzard G,3,40,80,11.03,0
+Blizzard M,2,35,70,9.66,4
+Blizzard G,3,40,80,11.03,4
 Cono C,4,25,45,6.21,0
-Cono M,5,28,55,7.59,0
+Cono M,5,28,55,7.59,2
 Cono G,6,30,60,8.28,0
-Pastel Oreo,7,180,300,41.38,0
-Banana Split C,8,40,85,11.72,0
-Banana Split M,9,45,90,,0
-Banana Split G,10,50,95,,0
-Pastel De la Rosa,11,200,300,,0
-Pastel Choco Xtreme,12,200,300,,0
-Pastel Fresa,13,200,300,,0
-Pastel Fresa Pay de Queso,14,200,300,,0
-Blizzard Familiar,15,60,95,,0
-DQ Sandwich,16,20,40,,0
-Dilly Bar,17,20,39,,0
-Sundae,18,30,55,,0
-Cono Waffle,19,40,85,,0
-Cono Cubierto,20,55,80,,0
-Cafe Frappe,21,20,45,,0
-Cafe Latte,22,20,45,,0
-Cafe Slush,23,20,45,,0
-Malteadas Frutos Rojos,24,40,65,,0
-Malteada Crema de Avellana,25,40,65,,0
-Malteada Mango,26,40,65,,0
-Malteada Caramelo,27,40,65,,0
-Malteada Vainilla,28,40,65,,0
-Malteada Chocolate,29,40,65,,0
-Malteada Fresa,30,40,65,,0
-Triple Chocolate Parfait,31,35,65,,0
-Pecan Mudslide,32,35,65,,0
-Canasta Waffle,33,40,80,,0
-Ingrediente Extra,34,5,10,,0
+Pastel Oreo,7,180,300,41.38,1
+Banana Split C,8,40,85,11.72,1
+Banana Split M,9,45,90,12.41,0
+Banana Split G,10,50,95,13.1,1
+Pastel De la Rosa,11,200,300,41.38,0
+Pastel Choco Xtreme,12,200,300,41.38,0
+Pastel Fresa,13,200,300,41.38,0
+Pastel Fresa Pay de Queso,14,200,300,41.38,0
+Blizzard Familiar,15,60,95,13.1,0
+DQ Sandwich,16,20,40,5.52,0
+Dilly Bar,17,20,39,5.38,0
+Sundae,18,30,55,7.59,0
+Cono Waffle,19,40,85,11.72,0
+Cono Cubierto,20,55,80,11.03,1
+Cafe Frappe,21,20,45,6.21,0
+Cafe Latte,22,20,45,6.21,1
+Cafe Slush,23,20,45,6.21,0
+Malteadas Frutos Rojos,24,40,65,8.97,0
+Malteada Crema de Avellana,25,40,65,8.97,0
+Malteada Mango,26,40,65,8.97,0
+Malteada Caramelo,27,40,65,8.97,0
+Malteada Vainilla,28,40,65,8.97,0
+Malteada Chocolate,29,40,65,8.97,0
+Malteada Fresa,30,40,65,8.97,0
+Triple Chocolate Parfait,31,35,65,8.97,1
+Pecan Mudslide,32,35,65,8.97,0
+Canasta Waffle,33,40,80,11.03,0
+Ingrediente Extra,34,5,10,1.38,0

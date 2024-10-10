@@ -3,6 +3,7 @@ import config
 import manejar_inventario
 import manejar_vendedores
 import datos_de_ventas
+import menu_ventas
 
 def desplegar_menu_principal() -> None:
 # Luis González
@@ -18,12 +19,47 @@ def desplegar_menu_principal() -> None:
     print ("[4] Consultar datos de las ventas")
     print("[5] Mostrar reportes de ventas por vendedor o por artículo")
     print ("[6] Modificar a los vendedores")
+    config.guiones()
 
 def registrar_una_venta () -> None:
     # follow up
-    print("Ingrese 'salir' si quiere regresar al menú principal. ")
-    print("(2) Ingrese la cantidad vendida")
-    seleccion = input("")
+    #obtener vendedor
+    [nombre_vendedor, id_vendedor] = menu_ventas.preguntar_vendedor()
+    if (id_vendedor == -2):
+        return -1
+
+
+    #obtener fecha
+    flag = True
+    while flag:
+        flag = False
+        print("Ingrese la fecha en donde se realizó la venta, que siga el formato (dd/mm/yyyy) Ejemplo 04/12/2005")
+        print("O ingrese 'salir' para salir")
+        fecha = input("Selección: ")
+        valor = menu_ventas.checar_fecha_completa(fecha)
+        if (valor == -2):
+            print("Saliendo...")
+            time.sleep(1)
+            return -1
+        if (not valor):
+            flag = True
+        
+    flag = True
+    while flag:
+        flag = False
+        menu_ventas.print_menu(nombre_vendedor)
+        seleccion = input("Selección: ") # se obtiene la seleccion de productos
+        config.actualizar_iva()
+        seleccion = config.checar_seleccion(seleccion)
+        if (seleccion == -2): # opción salir
+            return -1
+        elif (seleccion == -1): # error
+            flag = True
+        else:
+             valor = menu_ventas.seleccion_registrar_venta(seleccion,fecha,id_vendedor)
+             if (valor == -1):
+                 flag = True
+    return -1
 
 def registrar_articulos() -> None:
     # follow up

@@ -78,7 +78,7 @@ def vista_vendedor():
     print("De que vendedor se desea ver sus ventas?")
     print("O escriba 'salir' para salir")
     config.guiones()
-    lista_vendedores = config.recibir_archivo(manejar_vendedores.archivo_vendedores)
+    lista_vendedores = config.recibir_archivo(manejar_vendedores.ARCHIVO_VENDEDORES)
     manejar_vendedores.print_nombre_vendedor(lista_vendedores)
     seleccion = input("Selección: ")
     [id,row_vendedores] = manejar_vendedores.obtener_id_y_fila(lista_vendedores,seleccion)
@@ -152,6 +152,7 @@ def checar_fecha(fecha) -> bool:
         print ("Fecha aceptada.")
         return True
     print("Fecha no es válida. Cheque el formato nuevamente.")
+    config.guiones()
     time.sleep(1)
     return False
 # testing

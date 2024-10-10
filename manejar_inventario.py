@@ -1,6 +1,6 @@
 import config
 import time
-archivo_inventario = "Inventario.csv"
+ARCHIVO_INVENTARIO = "Inventario.csv"
 def is_correcta_seleccion (seleccion) -> int:
    # regresa la seleccion normal si es válida. 
    # regresa un -1 si no es válida
@@ -43,7 +43,7 @@ def llegada_articulos () -> None:
           print(lista[i][num_columna])
         
     flag = True
-    lista = config.recibir_archivo(archivo_inventario)
+    lista = config.recibir_archivo(ARCHIVO_INVENTARIO)
     
     while (flag):
       flag = False
