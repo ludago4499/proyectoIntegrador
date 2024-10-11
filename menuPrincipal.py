@@ -4,6 +4,7 @@ import manejar_inventario
 import manejar_vendedores
 import datos_de_ventas
 import menu_ventas
+import reportes_ventas
 
 def desplegar_menu_principal() -> None:
 # Luis González
@@ -22,8 +23,7 @@ def desplegar_menu_principal() -> None:
     config.guiones()
 
 def registrar_una_venta () -> None:
-    # follow up
-    #obtener vendedor
+    '''Submenu para registrar una venta en el sistema y actualizar los archivos necesarios'''
     [nombre_vendedor, id_vendedor] = menu_ventas.preguntar_vendedor()
     if (id_vendedor == -2):
         return -1
@@ -62,19 +62,21 @@ def registrar_una_venta () -> None:
     return -1
 
 def registrar_articulos() -> None:
-    # follow up
+    '''Registra articulos en el inventario'''
     config.guiones()
     valor = manejar_inventario.llegada_articulos()
     if (valor ==-1):
         return -1
     
-
 def consultar_datos_inventario() -> None:
-    # follow up
-    print("Ingrese 'salir' si quiere regresar al menú principal. ")
-    seleccion = input("")
+    print("Se imprimirá todo el menú del archivo")
+    valor = datos_de_ventas.checar_continuar()
+    if (not valor == -1 and not valor ==2):
+        manejar_inventario.print_todo_inventario()
+    return -1
 
 def consultar_datos_ventas() -> None:
+    '''Consulta datos de una venta ''' 
     # follow up
     config.guiones()
     datos_de_ventas.menu_datos_ventas()
@@ -83,18 +85,26 @@ def consultar_datos_ventas() -> None:
     if (seleccion == -2): # opción salir
         return -1
     if (seleccion == -1): # error
-        return consultar_datos_ventas
+        return consultar_datos_ventas()
     valor = datos_de_ventas.seleccion_datos_ventas(seleccion)
 
     if (valor == -1):
         return consultar_datos_ventas()
 
 def mostrar_reportes() -> None:
-    # follow up
-    print("Ingrese 'salir' si quiere regresar al menú principal. ")
-    seleccion = input("")
+    reportes_ventas.print_submenu()
+    seleccion = input("Seleccion: ")
+    seleccion = config.checar_seleccion(seleccion)
+    if (seleccion == -2):
+        return -1
+    if (not seleccion == -1):
+        seleccion = reportes_ventas.seleccion_ventas(seleccion)
+    if (seleccion == -1):
+        return mostrar_reportes()
+
 
 def modificar_vendedores():
+    '''Modifica los datos de un vendedor'''
     manejar_vendedores.menu_vendedor()
     seleccion = input("Selección: ")
     seleccion = config.checar_seleccion(seleccion)
@@ -108,12 +118,11 @@ def modificar_vendedores():
     if (valor == -1):
         return modificar_vendedores()
 
-    
-
 def seleccion_menu_principal(seleccion: int):
-    # Case-match para abrir el menú correspondiente
+    ''' # Case-match para abrir el menú correspondiente
     # Se regresa un "-1" si el número no se encuentra en las opciones
-    # Luis González
+    # Luis González'''
+ 
     match seleccion:
         case 1:
             return registrar_una_venta()

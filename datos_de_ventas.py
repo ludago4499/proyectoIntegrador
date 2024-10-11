@@ -1,11 +1,11 @@
 import config
 import time
 import manejar_vendedores
-
-archivo_lista_ventas = "listaVentas.csv"
+# archivo para analizar datos de las ventas
+ARCHIVO_LISTA_VENTAS = "listaVentas.csv"
 
 def menu_datos_ventas() -> None:
-    # Luis González
+    '''Imprime el menú de datos de ventas'''
     print("Qué desea hacer?")
     print("O ingrese 'salir' para salir")
     print("[1] Ver una vista general de las Ventas")
@@ -21,7 +21,7 @@ def print_listaVentas(lista: list):
     '''
     if (lista == None):
         return
-    lista_original = config.recibir_archivo(archivo_lista_ventas)
+    lista_original = config.recibir_archivo(ARCHIVO_LISTA_VENTAS)
     header = lista_original[0]
     format_string = "{:<15} {:<10} {:<10} {:<10} {:<15} {:<12} {:<10} {:<12}" 
     print(format_string.format(*header))
@@ -29,11 +29,10 @@ def print_listaVentas(lista: list):
         print_list =[] 
         for j in range(len(lista[i])):
             print_list.append(lista[i][j]) 
-        print(format_string.format(*print_list))
-        
+        print(format_string.format(*print_list))     
 
 def vista_general ():
-
+    '''Permite al usuario generar una vista general de las ventas por una cierta cantidad a la vez.'''
 
     # Luis González
     config.guiones()
@@ -42,16 +41,18 @@ def vista_general ():
     max = input("Selección: ")
     max = config.checar_seleccion(max)
     if (max == -1):
+        print("Número no aceptado. Intente nuevamente")
         return vista_general()
     elif(max == -2):
         return -1
 
-    lista = config.recibir_archivo(archivo_lista_ventas)
+    lista = config.recibir_archivo(ARCHIVO_LISTA_VENTAS)
     ctd_filas = len(lista)
     filas_faltantes = ctd_filas - 1 # se quita el header
     while (filas_faltantes > 0 and flag == True):
-        seleccion = checar_continuar(max)
-        if (seleccion == -2):
+        print("Desea ver los siguientes", max, "datos?")
+        seleccion = checar_continuar()
+        if (seleccion == -1):
             return -1
         if (seleccion == 2):
             print("Se ha terminado con éxito")
@@ -73,13 +74,14 @@ def vista_general ():
             config.guiones()
     return -1 # regresa al menu principal
 
-
 def vista_vendedor():
+    '''Permite al usuario ver todas las ventas de un vendedor en particular'''
     print("De que vendedor se desea ver sus ventas?")
     print("O escriba 'salir' para salir")
     config.guiones()
     lista_vendedores = config.recibir_archivo(manejar_vendedores.ARCHIVO_VENDEDORES)
-    manejar_vendedores.print_nombre_vendedor(lista_vendedores)
+    manejar_vendedores.print_nombre_vendedor()
+    config.guiones()
     seleccion = input("Selección: ")
     [id,row_vendedores] = manejar_vendedores.obtener_id_y_fila(lista_vendedores,seleccion)
     if (id == -2):
@@ -88,8 +90,8 @@ def vista_vendedor():
     if (id ==-1):
         print ("Vendedor no encontrado. Intente nuevamente")
         time.sleep(1)
-        return vista_vendedor
-    lista_ventas = config.recibir_archivo(archivo_lista_ventas)
+        return vista_vendedor()
+    lista_ventas = config.recibir_archivo(ARCHIVO_LISTA_VENTAS)
 
     filtered_rows = filtrar_filas_id(lista_ventas,id)
     if (not len(filtered_rows) == 0 ):
@@ -103,23 +105,29 @@ def vista_vendedor():
     time.sleep(1)
     return vista_vendedor()
 
-
 def calculacion_iva_mes ():
+
+    '''Se suma todo el iva generado por ventas en un mes específico'''
+
     print("Se calculará el total de IVA a pagar en un mes en específico.")
     print("Ingrese el mes y el año siguiente el formato (mm/yyyy). Ejemplo '12/2008' ")
     print("O ingrese 'salir' para salir")
     fecha = input("Selección: ")
+
+    if (config.desea_salir(fecha)):
+        print("Saliendo...")
+        return -1
     if (not checar_fecha(fecha)):
         return calculacion_iva_mes()
-    lista = config.recibir_archivo(archivo_lista_ventas)
+    lista = config.recibir_archivo(ARCHIVO_LISTA_VENTAS)
 
     filtered_rows = filtrar_filas_fecha(lista, fecha)
     print_listaVentas(filtered_rows)
     iva_total = sumar_iva(filtered_rows)
     print("Se imprimió todos los resultados.")
     print("El total de IVA del mes", fecha, "es el siguiente:",iva_total)
-
-
+    print("Se regresará a este menú para escoger otro mes")
+    return calculacion_iva_mes()
 def calculacion_contribucion_mes():
     '''Calcula el dinero obtenido con la contribución, que es 
     básicamente ganancias sin considerar costos fijos'''
@@ -127,16 +135,22 @@ def calculacion_contribucion_mes():
     print("Ingrese el mes y el año siguiente el formato (mm/yyyy). Ejemplo '12/2008' ")
     print("O ingrese 'salir' para salir")
     fecha = input("Selección: ")
+    
+    if (config.desea_salir(fecha)):
+        print("Saliendo... ")
+        return -1
     if (not checar_fecha(fecha)):
         return calculacion_iva_mes()
-    lista = config.recibir_archivo(archivo_lista_ventas)
-    lista = config.recibir_archivo(archivo_lista_ventas)
+    lista = config.recibir_archivo(ARCHIVO_LISTA_VENTAS)
+    lista = config.recibir_archivo(ARCHIVO_LISTA_VENTAS)
 
     filtered_rows = filtrar_filas_fecha(lista, fecha)
     print_listaVentas(filtered_rows)
     contribucion_total = sumar_contribucion(lista)
     print("Se imprimieron todos los resultados.")
     print("El total de contribución de este mes es de:", contribucion_total)
+    print("Se regresará a este menú para escoger otro mes.")
+    return calculacion_contribucion_mes()
 
 def checar_fecha(fecha) -> bool:
     '''
@@ -155,7 +169,7 @@ def checar_fecha(fecha) -> bool:
     config.guiones()
     time.sleep(1)
     return False
-# testing
+
 def filtrar_filas_id (lista: list,id: int)-> list:
     '''
     Crea una lista filtrada con únicamente filas que tienen en la columna
@@ -167,8 +181,6 @@ def filtrar_filas_id (lista: list,id: int)-> list:
         if (lista[i][7] == str(id)):
             filtered_rows.append(lista[i])
     return filtered_rows
-
-
 
 def filtrar_filas_fecha (lista: list,fecha) -> list:
 
@@ -184,8 +196,7 @@ def filtrar_filas_fecha (lista: list,fecha) -> list:
     return filtered_rows
 
 def sumar_iva (lista_filtrada: list)-> float:
-    # suma todo el iva usando la lista filtrada
-    # Luis González
+    '''suma todo el iva usando la lista filtrada'''
     pos_iva = 6
     iva_total = 0
     if (lista_filtrada == None):
@@ -195,6 +206,7 @@ def sumar_iva (lista_filtrada: list)-> float:
     return iva_total
 
 def sumar_contribucion(lisa_filtrada:list)->float:
+    '''Suma toda la contribucion de una lista_filtrada'''
     pos_contribucion = 4
     contribucion_total = 0
     if (lisa_filtrada == None):
@@ -203,9 +215,8 @@ def sumar_contribucion(lisa_filtrada:list)->float:
         contribucion_total += float(lisa_filtrada[i][pos_contribucion])
     return contribucion_total
 
-
-def checar_continuar(max) -> int:
-    print("Desea ver los siguientes", max, "datos?")
+def checar_continuar() -> int:
+    '''Checa si desea continuar el usuario'''
     print("Escriba '1' para confirmar")
     print ("Escriba '2' para terminar")
     seleccion = input("Seleccion: ")
@@ -213,17 +224,19 @@ def checar_continuar(max) -> int:
     if (seleccion == -2):
         return -1
     elif (seleccion == -1):
-        return checar_continuar(max)
+        print("No es un número válido")
+        config.guiones()
+        return checar_continuar()
     
     if seleccion == 1 or seleccion == 2:
         return seleccion
     else:
         print("No se ha entendido. Verifique su entrada nuevamente.")
         time.sleep(1)
-        return checar_continuar(max)
+        return checar_continuar()
     
-
 def seleccion_datos_ventas(seleccion: int):
+    '''Seleccion para el submenú de análisis de ventas'''
     match seleccion:
 
         case 1:

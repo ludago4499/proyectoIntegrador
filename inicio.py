@@ -1,8 +1,8 @@
 import menuPrincipal
 import config
-# Código Principal
-def main():
 
+def main() -> None:
+# Código Principal
     menuPrincipal.desplegar_menu_principal()
     seleccion = input("Seleccion: ")
     seleccion = config.checar_seleccion(seleccion)

@@ -93,6 +93,7 @@ def preguntar_cantidad() -> int:
      return cantidad
 
 def print_no_hay_suficiente() -> None:
+    '''Función para automatizar el mensaje de no hay suficiente'''
     print ("No hay suficiente en el inventario.")
     print( "Se regresará al menú anterior.")
     config.guiones()
@@ -157,6 +158,9 @@ def blizzard(fecha: str, id_vendedor:str ) -> None:
         return blizzard(fecha,id_vendedor)
     seleccion -= 1
     cantidad = preguntar_cantidad() # se pregunta la cantidad
+    if (cantidad == -1):
+        return -1
+    
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
     cantidad_nieve_a_usar = nieve_size[seleccion -1] * cantidad # se calcula la nieve a utilizar
@@ -180,8 +184,8 @@ def blizzard(fecha: str, id_vendedor:str ) -> None:
     time.sleep(1)
     return -1
 
-
 def cono(fecha: str, id_vendedor:str):
+    '''Función para vender cualquier tipo de cono'''
     nieve_size = [0.2, 0.3, 0.4, 0.4, 0.4]
     id_nieve_inventario = 1
     id_costos = [4,5,6,19,20]
@@ -199,17 +203,19 @@ def cono(fecha: str, id_vendedor:str):
     if (seleccion == -2):
         return -1
     if (seleccion == -1):
-        return cono(fecha)
+        return cono(fecha, id_vendedor)
     if (seleccion < 1 or seleccion >5):
         print("Ese número no está en la lista. Intente nuevamente")
         time.sleep(1)
-        return cono(fecha) 
+        return cono(fecha, id_vendedor) 
     if (seleccion <4):
         cono_id = seleccion + 5 # se acomoda para tener cono de 6,7,8
     else:
         cono_id = 13 + seleccion
     seleccion -=1
     cantidad = preguntar_cantidad()
+    if (cantidad == -1):
+        return -1
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
     cantidad_nieve_a_usar = nieve_size[seleccion -1] * cantidad
@@ -235,8 +241,6 @@ def cono(fecha: str, id_vendedor:str):
     config.guiones()
     time.sleep(1)
     return -1
-
-
 
 def pastel(fecha: str, id_vendedor:str):
 
@@ -267,6 +271,8 @@ def pastel(fecha: str, id_vendedor:str):
         return pastel(fecha,id_vendedor)
     seleccion -=1
     cantidad = preguntar_cantidad() # se pregunta la cantidad
+    if (cantidad == -1):
+        return -1
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
     cantidad_pasteles = cantidad
@@ -320,28 +326,30 @@ def banana_split(fecha: str,id_vendedor:str):
         return banana_split(fecha,id_vendedor)
     seleccion = seleccion -1 # cambia la selección, pues python trabajo iniciando con 0
     cantidad = preguntar_cantidad() # se pregunta la cantidad
+    if (cantidad == -1):
+        return -1
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
 
 
     # checa si hay suficiente
-    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_platanos[seleccion],id_platanos)
+    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_platanos[seleccion] * cantidad,id_platanos)
     if (not hay_suficiente):
         print_no_hay_suficiente()
         return -1
-    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_fresa[seleccion],id_fresa)
+    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_fresa[seleccion] * cantidad,id_fresa)
     if (not hay_suficiente):
         print_no_hay_suficiente()
         return -1
-    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_cereza[seleccion],id_cereza)
+    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_cereza[seleccion] * cantidad,id_cereza)
     if (not hay_suficiente):
         print_no_hay_suficiente()
         return -1
-    hay_suficiente = checar_suficiente_inventario(lista_inventario, ctd_crema_batida[seleccion],id_crema_batida)
+    hay_suficiente = checar_suficiente_inventario(lista_inventario, ctd_crema_batida[seleccion] * cantidad,id_crema_batida)
     if (not hay_suficiente):
         print_no_hay_suficiente()
         return -1
-    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_nieve[seleccion],id_nieve)
+    hay_suficiente = checar_suficiente_inventario(lista_inventario,ctd_nieve[seleccion] * cantidad,id_nieve)
     if (not hay_suficiente):
         print_no_hay_suficiente()
         return -1
@@ -390,6 +398,8 @@ def cafe(fecha: str, id_vendedor:str):
         return cafe(fecha,id_vendedor)
     seleccion = seleccion -1 # cambia la selección, pues python trabajo iniciando con 0
     cantidad = preguntar_cantidad() # se pregunta la cantidad
+    if (cantidad == -1):
+        return -1
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
     
@@ -412,7 +422,6 @@ def cafe(fecha: str, id_vendedor:str):
     config.guiones()
     time.sleep(1)
     return -1
-
 
 def malteadas(fecha:str, id_vendedor:str):
     '''Se agrega la función para vender malteadas'''
@@ -442,6 +451,8 @@ def malteadas(fecha:str, id_vendedor:str):
         return malteadas(fecha,id_vendedor)
     seleccion -= 1
     cantidad = preguntar_cantidad() # se pregunta la cantidad
+    if (cantidad == -1):
+        return -1
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
     
@@ -462,7 +473,6 @@ def malteadas(fecha:str, id_vendedor:str):
     config.guiones()
     time.sleep(1)
     return -1
-
 
 def extras(fecha:str, id_vendedor: str):
     '''Función para cualquier extra no encontrado en el menú anterior'''
@@ -491,6 +501,8 @@ def extras(fecha:str, id_vendedor: str):
         return extras(fecha,id_vendedor)
     seleccion = seleccion -1 # cambia la selección, pues python trabajo iniciando con 0
     cantidad = preguntar_cantidad() # se pregunta la cantidad
+    if (cantidad == -1):
+        return -1
     config.guiones()
     lista_inventario = config.recibir_archivo(manejar_inventario.ARCHIVO_INVENTARIO)
     
@@ -514,10 +526,6 @@ def extras(fecha:str, id_vendedor: str):
     time.sleep(1)
     return -1
 
-
-
-
-# agarrar costo, precio e iva
 def obtener_producto_costo_precio_iva (filename: str, id_producto: int) -> list:
     '''
     Desde un archivo y un id, se obtiene una lista 
@@ -564,7 +572,6 @@ def agregar_a_ventas(producto: str,cantidad: int,costo:float, precio:float,fecha
     lista_costos_y_precios[fila][5] = int( lista_costos_y_precios[fila][5]) + 1
     config.actualizar_archivo(ARCHIVO_COSTOS_Y_PRECIOS,lista_costos_y_precios)
 
-
 def obtener_fila_costos (lista_costos:list, producto:str ) -> int:
     '''De un producto vendido se obtiene el número de la fila 
     en "costos_y_precios.csv"'''
@@ -583,7 +590,6 @@ def quitar_del_inventario (id:int,cantidad:float,lista_inventario: list) -> None
             config.actualizar_archivo(manejar_inventario.ARCHIVO_INVENTARIO,lista_inventario)
             return
         
-
 def seleccion_registrar_venta(seleccion: int, fecha: str, id_vendedor: str):
     '''
     Se utiliza la seleccion de producto, la fecha y el id_vendedor 

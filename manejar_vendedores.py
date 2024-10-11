@@ -4,6 +4,7 @@ import time
 ARCHIVO_VENDEDORES = "listaVendedores.csv"
 
 def menu_vendedor ():
+    '''Imprime el menú para los vendedores'''
     config.guiones()
     print("Este es el menú para los vendedores")
     print("Qué se desea hacer?")
@@ -38,6 +39,8 @@ def agregar_vendedor():
         telefono_vendedor = checar_telefono(telefono_vendedor)
         if telefono_vendedor == -1:
             flag = True
+        if telefono_vendedor == -2:
+            return -1
     
     flag = True
     while flag:
@@ -46,6 +49,8 @@ def agregar_vendedor():
         descripcion_vendedor = checar_descripcion(descripcion_vendedor)
         if (descripcion_vendedor == -1):
             flag = True
+        if (descripcion_vendedor == -2):
+            return -1
     lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
     id_vendedor = generar_id(lista)
     fila = [nombre_vendedor, id_vendedor, telefono_vendedor, descripcion_vendedor]
@@ -61,6 +66,8 @@ def agregar_vendedor():
         print("Escriba 'confirmar' si desea continuar.")
         print("O escriba 'reiniciar' para reiniciar.")
         seleccion = input("Su respuesta: ") 
+        if config.desea_salir(seleccion):
+            return -1
         if (seleccion == 'confirmar'):
             flag = False
         elif (seleccion == 'reiniciar'):
@@ -76,6 +83,7 @@ def agregar_vendedor():
     return -1 # se regresa para que se repita el menú nuevamente
 
 def cambiar_datos():
+    '''Se cambian los datos de un vendedor en particular'''
     # Luis González
     config.guiones()
     lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
@@ -137,6 +145,7 @@ def cambiar_datos():
     return -1
 
 def eliminar_vendedor():
+    config.guiones()
     print("En este menú se podrá eliminar a un vendedor")
     print("Los cambios de esta decisión son finales. ")
     print ("Esta seguro que desea continuar? Escriba 'continuar' para continuar")
@@ -152,6 +161,7 @@ def eliminar_vendedor():
     while flag:
         config.guiones()
         print("Cuál vendedor se deséa eliminar?")
+        print("O escriba 'salir' para salir")
         seleccion = input("Seleccion: ")
         [id,row] = obtener_id_y_fila(lista,seleccion) 
         if (id == -2):
@@ -169,9 +179,11 @@ def eliminar_vendedor():
     return -1
 
 def seleccion_menu_vendedores(seleccion: int):
+    '''
     # Case-match para abrir el menú correspondiente
     # Se regresa un "-1" si el número no se encuentra en las opciones
-    # sin terminar
+
+    '''
     match seleccion:
         case 1:
             return agregar_vendedor()
@@ -186,20 +198,21 @@ def seleccion_menu_vendedores(seleccion: int):
             return -1
             
 def print_nombre_vendedor() -> None:
+    ''' Imprime todos los nombres de los vendedores excepto si estan eliminados''' 
     lista = config.recibir_archivo(ARCHIVO_VENDEDORES)
-    # imprime todos los nombres de los vendedores
-    # excepto si estan eliminados
     for i in range(1,len(lista)):
         if (not lista[i][0][:9] == "ELIMINADO"):
          print(lista[i][0])
 
 def print_datos_vendedor(row: int,lista: list) -> None:
+    '''Imprime los datos de un solo vendedor'''
     #imprime los datos de un solo vendedor
     for i in range(2,len(lista[row])):
         print(lista[0][i], lista[row][i])
     return
 
 def print_columnas(lista: list, start = 0)-> None:
+    ''' Imprime la categorias deu n vendedor/producto excepto id''' 
     #imprime las categorías de un vendedor
     for i in range (start,len(lista[0])):
         if (not i == 1):

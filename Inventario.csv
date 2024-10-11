@@ -1,13 +1,33 @@
-Nombre,id,Cantidad en existencia,Descripción,Precio,Costo
-Nieve,1,100,Medida en litros,0,0
-Plátanos,2,40,Medida en unidades,0,4
-Cerezas,3,100,Medida en unidades,0,6
-Fresas,4,100,Medida en unidades,0,5
-Crema batida,5,50,Medida en botes (1 litro),0,12
-Cono,6,50,Medida en unidades,40,10
-Cono doble,7,50,Medida en unidades,55,15
-Cono triple,8,50,Medida en unidades,60,20
-Pastel Oreo,9,5,Medida en unidades,300,120
-Pastel Choco Xtreme,10,5,Medida en unidades,300,140
-Pastel Fresa,11,5,Medida en unidades,300,160
-Dilly bar,12,10,Medida en unidades,30,8
+Nombre,id,Cantidad en existencia,Descripcion
+Nieve,1,53.2,Medida en litros
+Platanos,2,294.0,Medida en unidades
+Cerezas,3,65.0,Medida en unidades
+Fresas,4,66.0,Medida en unidades
+Crema batida,5,48.4,Medida en botes (1 litro)
+Cono C,6,44.0,Medida en unidades
+Cono M,7,51.0,Medida en unidades
+Cono G,8,50,Medida en unidades
+Pastel Oreo,9,3.0,Medida en unidades
+Pastel Choco Xtreme,10,5,Medida en unidades
+Pastel Fresa,11,5,Medida en unidades
+Pastel Fresa Pay de Queso,12,111.0,Medida en unidades
+Pastel de De la Rosa,13,52,Medida en unidades
+DQ Sandwich,14,91.0,Medida en unidades
+Dilly Bar,15,84,Medida en unidades
+Sundae,16,92,Medida en unidades
+Cono Waffle,17,72,Medida en unidades
+Cono Cubierto,18,79.0,Medida en unidades
+Cafe Frappe,19,80.0,Medida en unidades
+Cafe Latte,20,50.0,Medida en unidades
+Cafe Slush,21,96,Medida en unidades
+Malteadas Frutos Rojos,22,75,Medida en unidades
+Malteada Crema de Avellana,23,89.0,Medida en unidades
+Malteada Mango,24,77,Medida en unidades
+Malteada Caramelo,25,90.0,Medida en unidades
+Malteada Vainilla,26,76,Medida en unidades
+Malteada Chocolate,27,71,Medida en unidades
+Malteada Fresa,28,55,Medida en unidades
+Triple Chocolate Parfait,29,68.0,Medida en unidades
+Pecan Mudslide,30,68,Medida en unidades
+Canasta Waffle,31,71,Medida en unidades
+Ingrediente Extra,32,98,Medida en unidades

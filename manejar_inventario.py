@@ -47,6 +47,7 @@ def llegada_articulos () -> None:
     
     while (flag):
       flag = False
+      config.guiones()
       print("Qué artículo(s) han llegado?")
       print("O ingrese 'salir' para salir.")
       print_columna(lista,0)
@@ -71,14 +72,28 @@ def llegada_articulos () -> None:
          flag = True
       else:
          # si ambas selecciones son válidas se cambia el archivo del inventario
-         lista[row][2] = seleccion + int (lista[row][2])
+         lista[row][2] = seleccion + float (lista[row][2])
          cambiar_articulo(lista)
          print("Se ha realizado con éxito. Se regresa al menú principal.")
          time.sleep(1)
          return -1
 
-
-# este método actualiza el inventario
 def cambiar_articulo (lista) -> None:
+   # este método actualiza el inventario
    archivo_inventario = "Inventario.csv"
    config.actualizar_archivo(archivo_inventario,lista)
+
+def print_todo_inventario() -> None:
+   '''Función que imprime todo el inventario con un formato especial'''
+   lista_inventario = config.recibir_archivo(ARCHIVO_INVENTARIO)
+   config.guiones()
+   header = lista_inventario[0]
+   format_string = "{:<35} {:<5} {:<25} {:<30}"
+   print(format_string.format(*header))
+   for i in range(1,len(lista_inventario)):
+      print_list = []
+      for j in range(len(lista_inventario[i])):
+         print_list.append(lista_inventario[i][j])
+      print(format_string.format(*print_list))
+   config.guiones()
+   time.sleep(5)
