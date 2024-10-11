@@ -50,13 +50,25 @@ def generar_datos_ventas():
       time.sleep(1)
       config.guiones()
       return generar_datos_ventas()
-   [costo_producto, precio_producto, iva_producto, cantidad_vendida_producto] = lista_costos[fila][2:]
-   print("El producto ", producto)
-   print("Tiene un id de", id_producto)
-   print("Con un costo de", costo_producto)
-   print("Vendido a un precio de", precio_producto)
-   print("Con un IVA de", iva_producto)
-   print("Se ha vendido el producto", producto,"un total de", cantidad_vendida_producto, "veces.")
+   
+   
+   producto_info = {
+    "id": id_producto,
+    "producto": producto,
+    "costo": lista_costos[fila][2],
+    "precio": lista_costos[fila][3],
+    "iva": lista_costos[fila][4],
+    "cantidad_vendida": lista_costos[fila][5]
+}
+
+   print(f"El producto {producto_info['producto']}")
+   print(f"Tiene un id de {producto_info['id']}")
+   print(f"Con un costo de {producto_info['costo']}")
+   print(f"Vendido a un precio de {producto_info['precio']}")
+   print(f"Con un IVA de {producto_info['iva']}")
+   print(f"Se ha vendido el producto {producto_info['producto']} un total de {producto_info['cantidad_vendida']} veces.")
+
+
    config.guiones()
    time.sleep(2)
    print("Desea ver otro artículo?")
